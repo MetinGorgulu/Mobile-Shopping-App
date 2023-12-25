@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">BuyGo</string>
+    <string name="Language">Language</string>
+    <string name="price">Price :</string>
+    <string name="username">UserName</string>
+    <string name="password">Password</string>
+    <string name="mail">E-mail</string>
+    <string name="my_products">My Products</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="have_account">Already Have Account?</string>
+    <string name="havent_account">Don\'t Have An Account?</string>
+    <string name="card_number">Card Number</string>
+    <string name="seller_panel">Seller Panel</string>
+    <string name="store_name">Store Name</string>
+    <string name="are_y_seller">Are You Seller?</string>
+    <string name="click_here">Click Here</string>
+    <string name="Current_Date">Current Date</string>
+    <string name="Current_Time">Current Time</string>
+    <string name="Product_Name">Product Name</string>
+    <string name="Product_Price">Product Price</string>
+    <string name="Total_Price">Total Price</string>
+    <string name="Total_Quantity">Total Quantity</string>
+    <string name="my_orders">My Orders</string>
+    <string name="my_favorites">My Favorites</string>
+    <string name="Settings">Settings</string>
+    <string name="quit">Log Out</string>
+    <string name="new_address">Create A New Address</string>
+    <string name="name">Name</string>
+    <string name="address_lane">Address Lane</string>
+    <string name="city">City</string>
+    <string name="postal">Postal Code</string>
+    <string name="phone">Phone Number</string>
+    <string name="add_address">Add Address</string>
+    <string name="payment">Payment</string>
+    <string name="Buy">Buy</string>
+    <string name="home">Home</string>
+    <string name="cart">Cart</string>
+    <string name="profile">Profile</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="add_to_favorites">Add To Favorites</string>
+    <string name="max_quantity_10">Max Quantity is 10</string>
+
+</resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingConstraints"
+    tools:context=".AddressActivity">
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/address_rec"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/address_item"
+        android:layout_marginTop="30dp"
+        />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_margin="10dp"
+        android:backgroundTint="#F05E16"
+        android:id="@+id/add_address_button"
+        android:drawableLeft="@drawable/add_location"
+        android:padding="14dp"
+        android:textStyle="bold"
+        android:text="@string/add_address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/payment_button"
+        app:layout_constraintWidth_percent=".8"
+        android:layout_height="wrap_content"
+        android:onClick="go_address"
+
+        />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/green"
+        android:id="@+id/payment_button"
+        android:drawableLeft="@drawable/chart"
+        android:padding="14dp"
+        android:textStyle="bold"
+        android:text="@string/payment"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_percent=".8"
+        android:layout_height="wrap_content"
+        android:onClick="go_payment"
+
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

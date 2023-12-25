@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">BuyGo</string>
+    <string name="Language">Dil</string>
+    <string name="price">Fiyat :</string>
+    <string name="username">Kullanıcı Adı</string>
+    <string name="password">Şifre</string>
+    <string name="mail">E-mail</string>
+    <string name="my_products">Ürünlerim</string>
+    <string name="login">Giriş Yap</string>
+    <string name="register">Kayıt Ol</string>
+    <string name="have_account">Zaten Hesabınız Var mı?</string>
+    <string name="havent_account">Hesabınız Yok mu?</string>
+    <string name="card_number">Kart Numarası</string>
+    <string name="seller_panel">Satıcı Paneli</string>
+    <string name="store_name">Mağaza Adı</string>
+    <string name="are_y_seller">Satıcı Mısınız?</string>
+    <string name="click_here">Buraya Tıklayın</string>
+    <string name="Current_Date">Eklenme Tarihi</string>
+    <string name="Current_Time">Eklenme Zamanı</string>
+    <string name="Product_Name">Ürün İsmi</string>
+    <string name="Product_Price">Ürün Fiyatı</string>
+    <string name="Total_Price">Toplam Fiyat</string>
+    <string name="Total_Quantity">toplam Adet</string>
+    <string name="my_orders">Siparişlerim</string>
+    <string name="my_favorites">Favorilerim</string>
+    <string name="Settings">Ayarlar</string>
+    <string name="quit">Çıkış Yap</string>
+    <string name="new_address">Yeni Bir Adres Oluştur</string>
+    <string name="name">Ad</string>
+    <string name="address_lane">Adres Satırı</string>
+    <string name="city">Şehir</string>
+    <string name="postal">Posta Kodu</string>
+    <string name="phone">Telefon Numarası</string>
+    <string name="add_address">Adres Ekle</string>
+    <string name="payment">Ödeme</string>
+    <string name="Buy">Satın al</string>
+    <string name="home">Ana Sayfa</string>
+    <string name="cart">Sepet</string>
+    <string name="profile">Profil</string>
+    <string name="add_to_cart">Sepete Ekle</string>
+    <string name="add_to_favorites">Favorilere Ekle</string>
+    <string name="max_quantity_10">En Fazla 10 Ürün Eklenebilir</string>
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>

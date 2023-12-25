@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="28dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="$$$"
+            android:textColor="@color/green"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+
+
+        <EditText
+            android:id="@+id/car_number"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:hint="@string/card_number"
+            android:inputType="number"
+            android:padding="15dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/card_month"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/edit_text"
+                android:hint="MM"
+                android:inputType="textPassword"
+                android:orientation="horizontal"
+                android:padding="15dp" />
+
+            <EditText
+                android:id="@+id/card_year"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/edit_text"
+                android:hint="Year"
+                android:inputType="textPassword"
+                android:padding="15dp" />
+
+            <EditText
+                android:id="@+id/card_ccv"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:background="@drawable/edit_text"
+                android:hint="CCV"
+                android:inputType="textPassword"
+                android:padding="15dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/buy_now"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/green"
+            android:drawableLeft="@drawable/dollar"
+            android:padding="14dp"
+            android:text="@string/payment"
+            android:onClick="payment_gohome"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            tools:ignore="OnClick" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
