@@ -22,7 +22,9 @@ public class PaymentActivity extends AppCompatActivity {
 
         if(true){ // burada firebase'deki kart ile eşleşiyor mu onu kontrol et
             Toast.makeText(PaymentActivity.this,"Payment Successful",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(PaymentActivity.this,Home.class));
+            Intent intent = new Intent(PaymentActivity.this, Home.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         }
     }
 }
