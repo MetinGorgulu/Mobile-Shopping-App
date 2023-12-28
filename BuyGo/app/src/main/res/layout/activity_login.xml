@@ -29,12 +29,12 @@
 
 
         <EditText
-            android:id="@+id/login_username"
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text"
             android:drawableEnd="@drawable/ic_account_circle_f_ll0_wght400_grad0_opsz24"
-            android:hint="@string/username"
+            android:hint="email"
             android:inputType="textPersonName"
             android:padding="15dp" />
 

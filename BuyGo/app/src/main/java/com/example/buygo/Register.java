@@ -1,5 +1,6 @@
 package com.example.buygo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,10 +11,17 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
+
 public class Register extends AppCompatActivity {
 
 
     EditText username,mail,password;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +29,7 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        auth = FirebaseAuth.getInstance();
         username= findViewById(R.id.register_username);
         mail= findViewById(R.id.register_email);
         password= findViewById(R.id.register_password);
@@ -54,13 +63,22 @@ public class Register extends AppCompatActivity {
             Toast.makeText(this,"Password too short, enter minimum 6 characters!",Toast.LENGTH_SHORT).show();
             return;
         }
-        Toast.makeText(this,"Register Successful",Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(Register.this,Login.class));
+        auth.createUserWithEmailAndPassword(email, pass)
+                        .addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful())
+                                {
+                                    Toast.makeText(Register.this , "Successfully Register",Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(Register.this, MainActivity.class));
+                                }
+                                else
+                                {
+                                    Toast.makeText(Register.this , "Registration Failed" + task.getException(),Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
 
-    }
-
-    public void go_hh(View view){
-        startActivity(new Intent(Register.this,Home.class));
     }
 
     public void go_seller_register(View view){

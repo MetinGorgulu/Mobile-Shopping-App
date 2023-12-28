@@ -37,12 +37,12 @@ public class CartActivity extends AppCompatActivity {
                 case R.id.menu_chart:
                     return true;
                 case R.id.menu_user:
-                     // misafir ise alttaki satır çalışacak
+                    // misafir ise alttaki satır çalışacak
                     if(true){
                         startActivity(new Intent(getApplicationContext(),Login.class));
                     }
                     // kullanıcı ise
-                   // startActivity(new Intent(getApplicationContext(),Profile.class));
+                    // startActivity(new Intent(getApplicationContext(),Profile.class));
                     finish();
                     return true;
             }

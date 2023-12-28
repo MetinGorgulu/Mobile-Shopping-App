@@ -43,12 +43,7 @@ public class Home extends AppCompatActivity {
                     finish();
                     return true;
                 case R.id.menu_user:
-                     // misafir ise alttaki satır çalışacak
-                    if(true){
-                        startActivity(new Intent(getApplicationContext(),Login.class));
-                    }
-                    // kullanıcı ise alttaki satır çalışacak
-                    // startActivity(new Intent(getApplicationContext(),Profile.class));
+                    startActivity(new Intent(getApplicationContext(),Profile.class));
                     finish();
                     return true;
             }

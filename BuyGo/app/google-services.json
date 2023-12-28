@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "696706860305",
+    "project_id": "buygo-b27e1",
+    "storage_bucket": "buygo-b27e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:696706860305:android:1e1cb6053c595ff49af8b0",
+        "android_client_info": {
+          "package_name": "com.example.buygo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNdOAuuw2F9b1i8I_XeYriVU8Br2b-dyA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
