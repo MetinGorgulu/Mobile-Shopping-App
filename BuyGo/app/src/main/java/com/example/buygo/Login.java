@@ -30,6 +30,13 @@ public class Login extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         mail= findViewById(R.id.login_email);
         password= findViewById(R.id.login_password);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("notifi","nottt",NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+        createNotificationChannel();
 
     }
 
@@ -67,6 +74,15 @@ public class Login extends AppCompatActivity {
 
                     }
                 });
+        NotificationCompat.Builder builder= new NotificationCompat.Builder(Home.this,id);
+                builder.setContentTitle("Price Alert");
+                builder.setContentText("Your Favorite product price is down");
+                builder.setSmallIcon(R.drawable.dollar);
+                builder.setAutoCancel(true);
+
+                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                if(notificationManager!=null)
+                    notificationManager.notify(1, builder.build());
 
 
     }
@@ -74,6 +90,22 @@ public class Login extends AppCompatActivity {
     //register e gitmeli
     public void register(View view){
         startActivity(new Intent(Login.this,Register.class));
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "asdas";
+            String description = "getString(sss)";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(id, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 }
