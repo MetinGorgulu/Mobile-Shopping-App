@@ -65,16 +65,7 @@ public class Login extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(Login.this, Home.class));
-                        }
-                        else
-                        {
-                            Toast.makeText(Login.this,"Error: Mail or Password is wrong "+task.getException(),Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
-        NotificationCompat.Builder builder= new NotificationCompat.Builder(Home.this,id);
+                            NotificationCompat.Builder builder= new NotificationCompat.Builder(Home.this,id);
                 builder.setContentTitle("Price Alert");
                 builder.setContentText("Your Favorite product price is down");
                 builder.setSmallIcon(R.drawable.dollar);
@@ -83,6 +74,16 @@ public class Login extends AppCompatActivity {
                 NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 if(notificationManager!=null)
                     notificationManager.notify(1, builder.build());
+                startActivity(new Intent(Login.this, Home.class));
+                        }
+                        else
+                        {
+                            Toast.makeText(Login.this,"Error: Mail or Password is wrong "+task.getException(),Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+        
 
 
     }
