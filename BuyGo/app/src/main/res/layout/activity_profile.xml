@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/white"
     tools:ignore="MissingConstraints"
-    tools:context=".Profile">
+    tools:context=".activities.Profile">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
+            android:id="@+id/profile_username"
             android:text="kullanıcı ismi"
             android:textColor="#688889"
             android:textSize="20sp"
@@ -43,6 +44,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/profile_usermail"
             android:text="kullanıcı mail"
             android:textSize="16sp"
             />
@@ -134,13 +136,14 @@
         android:layout_marginStart="20dp"
         android:layout_height="wrap_content">
 
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/quit"
             android:textSize="20sp"
             android:drawablePadding="20dp"
             android:textStyle="bold"
+            android:id="@+id/log_out"
             android:drawableLeft="@drawable/ic_baseline_exit_to_app_24"
             />
 

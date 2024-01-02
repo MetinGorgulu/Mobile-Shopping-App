@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="MissingConstraints"
+    android:id="@+id/favorites_constraint"
     android:orientation="vertical"
-    tools:context=".Favorites">
+    tools:context=".activities.Favorites">
 
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:id="@+id/cart_rec"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent=".9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/favorites_item"
+        android:id="@+id/favorites_name"
+        android:layout_marginVertical="6dp"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:text="@string/my_favorites"
         />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favorites_cart_rec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent=".9"
+        tools:listitem="@layout/favorites_item" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

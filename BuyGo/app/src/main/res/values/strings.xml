@@ -19,7 +19,8 @@
     <string name="Current_Time">Current Time</string>
     <string name="Product_Name">Product Name</string>
     <string name="Product_Price">Product Price</string>
-    <string name="Total_Price">Total Price</string>
+    <string name="Total_Price">Total Price : </string>
+    <string name="Quantity_Price">Quantity Price : </string>
     <string name="Total_Quantity">Total Quantity</string>
     <string name="my_orders">My Orders</string>
     <string name="my_favorites">My Favorites</string>

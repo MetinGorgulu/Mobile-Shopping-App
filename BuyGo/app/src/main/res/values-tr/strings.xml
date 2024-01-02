@@ -19,7 +19,8 @@
     <string name="Current_Time">Eklenme Zamanı</string>
     <string name="Product_Name">Ürün İsmi</string>
     <string name="Product_Price">Ürün Fiyatı</string>
-    <string name="Total_Price">Toplam Fiyat</string>
+    <string name="Total_Price">Toplam Fiyat : </string>
+    <string name="Quantity_Price">Birim Fiyat : </string>
     <string name="Total_Quantity">toplam Adet</string>
     <string name="my_orders">Siparişlerim</string>
     <string name="my_favorites">Favorilerim</string>

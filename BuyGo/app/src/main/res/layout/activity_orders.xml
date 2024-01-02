@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     tools:ignore="MissingConstraints"
     android:orientation="vertical"
-    tools:context=".Orders">
+    tools:context=".activities.Orders">
 
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"
-        android:id="@+id/cart_rec"
+        android:id="@+id/orders_cart_rec"
         android:layout_height="wrap_content"
         app:layout_constraintWidth_percent=".9"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddAddressActivity"
+    tools:context=".activities.AddAddressActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -119,12 +119,12 @@
             android:id="@+id/add_address_postal"
             android:layout_width="240dp"
             android:layout_height="40dp"
-            android:background="@color/white"
-            android:paddingLeft="20dp"
             android:layout_gravity="center"
+            android:background="@color/white"
             android:elevation="10dp"
-            android:inputType="number"
             android:hint="@string/postal"
+            android:inputType="number"
+            android:paddingLeft="20dp"
             tools:ignore="MissingConstraints">
 
         </EditText>
@@ -160,7 +160,7 @@
 
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:id="@+id/diagnose"
+        android:id="@+id/add_add_address_button"
         android:layout_gravity="center"
         android:text="@string/add_address"
         android:textSize="18dp"

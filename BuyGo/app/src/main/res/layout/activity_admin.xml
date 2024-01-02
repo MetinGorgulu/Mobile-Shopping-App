@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:ignore="MissingConstraints"
     android:orientation="vertical"
-    tools:context=".Admin">
+    tools:context=".activities.Admin">
 
   <LinearLayout
       android:layout_width="match_parent"
@@ -28,7 +28,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"
-        android:id="@+id/cart_rec"
+        android:id="@+id/admin_cart_rec"
         android:layout_marginTop="40dp"
         android:layout_height="wrap_content"
         app:layout_constraintWidth_percent=".9"

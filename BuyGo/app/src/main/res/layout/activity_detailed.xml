@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="MissingConstraints"
-    tools:context=".DetailedActivity">
+    tools:context=".activities.DetailedActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -16,10 +16,10 @@
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/ic_launcher_background"
         android:scaleType="centerCrop"
-         />
+        />
 
     <androidx.cardview.widget.CardView
-        android:translationY="-40dp"
+        android:translationY="-10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -56,6 +56,15 @@
             </RelativeLayout>
 
             <TextView
+                android:fontFamily="amethyst"
+                android:id="@+id/detailed_desc"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Burası açıklama yeridir ona göre vaziyet alınız."/>
+
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/price"
@@ -72,12 +81,12 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 >
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="$"
-    android:textStyle="bold"
-    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$"
+                    android:textStyle="bold"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -143,7 +152,7 @@
 
     <Button
         android:layout_marginBottom="20dp"
-        android:id="@+id/detailed_button"
+        android:id="@+id/add_to_cart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/add_to_cart"

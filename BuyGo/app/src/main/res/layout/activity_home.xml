@@ -5,72 +5,94 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="MissingConstraints"
-    tools:context=".Home"
+    tools:context=".activities.Home"
     android:orientation="vertical">
 
 
-
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
-
-
-    <ViewFlipper
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:autoStart="true"
-        android:id="@+id/view_flip"
-        android:flipInterval="2500"
-        android:inAnimation="@android:anim/slide_in_left"
-        android:outAnimation="@android:anim/slide_out_right"
-        >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/home_image1"
-            android:src="@drawable/offer1"
-
-            />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/home_image2"
-            android:src="@drawable/offer2"
-
-            />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/home_image3"
-            android:src="@drawable/offer3"
-
-            />
+        android:layout_height="wrap_content">
 
 
-    </ViewFlipper>
+        <ViewFlipper
+            android:id="@+id/view_flip"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:autoStart="true"
+            android:flipInterval="2500"
+            android:inAnimation="@android:anim/slide_in_left"
+            android:outAnimation="@android:anim/slide_out_right">
 
-</LinearLayout>
+            <ImageView
+                android:id="@+id/home_image1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/offer1"
+
+                />
+
+            <ImageView
+                android:id="@+id/home_image2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/offer2"
+
+                />
+
+            <ImageView
+                android:id="@+id/home_image3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/offer3"
+
+                />
+
+
+        </ViewFlipper>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rec_linear"
+        android:layout_marginVertical="10dp"
         >
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/products"
-        />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Products"
+            android:textSize="28sp"
+            android:textColor="@color/black"
+
+            />
+
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/rec_linear"
+        android:layout_marginTop="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.484">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/products_rec"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
