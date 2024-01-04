@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.buygo.R;
 import com.example.buygo.adapters.AddressAdapter;
 import com.example.buygo.models.AddressModel;
+import com.example.buygo.models.MyCartModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -81,10 +82,9 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
                     Toast.makeText(AddressActivity.this, "Kayıtlı Address Yok", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(AddressActivity.this, mAddress, Toast.LENGTH_SHORT).show();
                     long amount = (long) obj;
                     Intent intent = new Intent(AddressActivity.this, PaymentActivity.class);
-                    intent.putExtra("item", amount);
+                    intent.putExtra("totalAmount", amount);
                     intent.putExtra("addressName" ,mAddress);
                     startActivity(intent);
                 }

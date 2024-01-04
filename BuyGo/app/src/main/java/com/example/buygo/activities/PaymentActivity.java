@@ -14,17 +14,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.buygo.R;
+import com.example.buygo.adapters.MyCartAdapter;
+import com.example.buygo.models.MyCartModel;
+import com.example.buygo.models.MyFavoritesModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -42,7 +49,7 @@ public class PaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Object obj = getIntent().getSerializableExtra("item");
+        Object obj = getIntent().getSerializableExtra("totalAmount");
         Object getAddressName = getIntent().getSerializableExtra("addressName");
 
         firestore = FirebaseFirestore.getInstance();
@@ -139,7 +146,6 @@ public class PaymentActivity extends AppCompatActivity {
 
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
         saveCurrentTime = currentTime.format(calForDate.getTime());
-
         final HashMap<String , Object > cartMap = new HashMap<>();
         cartMap.put("Date", saveCurrentDate);
         cartMap.put("Time", saveCurrentTime);
@@ -149,7 +155,84 @@ public class PaymentActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         Toast.makeText(PaymentActivity.this, "Sipariş Tamamlandı ", Toast.LENGTH_SHORT).show();
-                        finish();
+                        if (task.isSuccessful()) {
+                            DocumentReference documentReference = task.getResult();
+                            if (documentReference != null) {
+                                String addedDocumentId = documentReference.getId();
+                                Toast.makeText(PaymentActivity.this, "Sipariş Tamamlandı. Belge ID: " + addedDocumentId, Toast.LENGTH_SHORT).show();
+                                AddCartsOrder(addedDocumentId);
+                                finish();
+                            }
+                        }
+
+
+                    }
+                });
+
+
+    }
+    private boolean isLoopExecuted = false;
+    private void AddCartsOrder(String id){
+
+
+        final MyCartModel[] mycartmodel = new MyCartModel[1];
+        MyCartAdapter cartAdapter;
+        mycartmodel[0] = new MyCartModel();
+        if(!isLoopExecuted)
+        {
+            firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
+                    .collection("AddToCart")
+                    .get().addOnCompleteListener (new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()&& !isLoopExecuted) {
+                                List<DocumentSnapshot> documents = task.getResult().getDocuments();
+
+                                // Sadece bir kez döngü yap
+                                for (DocumentSnapshot document : documents) {
+                                    MyCartModel pmycartmodel = document.toObject(MyCartModel.class);
+
+                                    mycartmodel[0] = pmycartmodel;
+                                    WriteCartsPayment(id, mycartmodel[0]);
+                                    finish();
+                                }
+
+                                isLoopExecuted = true;
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Belge okuma hatası: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    });
+        }
+
+    }
+    private void WriteCartsPayment(String id,MyCartModel carts){
+        final HashMap<String , Object > cartMap = new HashMap<>();
+        cartMap.put("img_url" , carts.getImg_url());
+        cartMap.put("productName", carts.getProductName());
+        cartMap.put("productPrice ", carts.getProductPrice());
+        cartMap.put("totalQuantity", carts.getTotalQuantity());
+        cartMap.put("totalPrice", carts.getTotalPrice());
+        firestore.collection("CurrentUser")
+                .document(auth.getCurrentUser().getUid())
+                .collection("MyOrders")
+                .document(id)
+                .collection("Carts")
+                .add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        Toast.makeText(PaymentActivity.this, "Sipariş Tamamlandı ", Toast.LENGTH_SHORT).show();
+                        if (task.isSuccessful()) {
+                            DocumentReference documentReference = task.getResult();
+                            if (documentReference != null) {
+                                String addedDocumentId = documentReference.getId();
+                                Toast.makeText(PaymentActivity.this, "Sipariş Tamamlandı. Belge ID: " + addedDocumentId, Toast.LENGTH_SHORT).show();
+                                AddCartsOrder(addedDocumentId);
+                                finish();
+                            }
+                        }
+
 
                     }
                 });

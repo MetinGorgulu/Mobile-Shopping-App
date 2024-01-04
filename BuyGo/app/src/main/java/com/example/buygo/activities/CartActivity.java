@@ -3,6 +3,7 @@ package com.example.buygo.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +33,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.checkerframework.checker.i18n.qual.LocalizableKeyBottom;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +59,7 @@ public class CartActivity extends AppCompatActivity {
 
         overAllAmount = findViewById(R.id.cart_total_price);
         recyclerView = findViewById(R.id.my_cart_rec);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         cartModelList = new ArrayList<>();
         cartAdapter = new MyCartAdapter(this,cartModelList);
         recyclerView.setAdapter(cartAdapter);

@@ -2,6 +2,7 @@ package com.example.buygo.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,7 +52,7 @@ public class Favorites extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         auth= FirebaseAuth.getInstance();
 
-        favoritesRecyclerview.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
+        favoritesRecyclerview.setLayoutManager(new GridLayoutManager(this,2));
         favoritesModelList = new ArrayList<>();
         favoritesAdapter = new MyFavoritesAdapter(this, favoritesModelList);
         favoritesRecyclerview.setAdapter(favoritesAdapter);

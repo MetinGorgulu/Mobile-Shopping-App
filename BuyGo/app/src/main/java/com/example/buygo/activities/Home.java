@@ -3,6 +3,7 @@ package com.example.buygo.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -87,7 +88,7 @@ public class Home extends AppCompatActivity {
 
 
         // Products
-        allProductRecyclerview.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        allProductRecyclerview.setLayoutManager(new GridLayoutManager(this,2));
         allProductsModelList = new ArrayList<>();
         allProductsAdapter = new AllProductsAdapter(this, allProductsModelList);
         allProductRecyclerview.setAdapter(allProductsAdapter);
