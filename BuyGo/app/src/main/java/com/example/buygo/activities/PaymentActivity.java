@@ -40,6 +40,8 @@ public class PaymentActivity extends AppCompatActivity {
     long totalAmount;
     Button paymentbtn;
     String addressName;
+    String getusername ;
+    long geneltoplam=0;
     FirebaseFirestore firestore;
     FirebaseAuth auth;
 
@@ -49,17 +51,16 @@ public class PaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Object obj = getIntent().getSerializableExtra("totalAmount");
         Object getAddressName = getIntent().getSerializableExtra("addressName");
 
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
-
+        getTotalAmount();
+        totalAmount=geneltoplam;
         addressName = (String) getAddressName;
-        totalAmount = (long) obj;
         total = findViewById(R.id.payment_total_price);
-        total.setText(String.valueOf(totalAmount) + " $");
+
         paymentbtn = findViewById(R.id.payment_payment_button);
         cardNumber = findViewById(R.id.card_number);
         month = findViewById(R.id.card_month);
@@ -89,6 +90,19 @@ public class PaymentActivity extends AppCompatActivity {
 
 
     }
+    private void getTotalAmount(){
+        firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
+                .collection("AddToCart").get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                             geneltoplam+= document.getLong("totalPrice");
+                            total.setText(String.valueOf(geneltoplam) + " $");
+                        }
+                    }
+                });
+
+    }
 
     private void controlCardInformations(String cardNum, String cardMon, String cardY, String cardC) {
         CollectionReference cardInformationsCollection = firestore.collection("CardInformations");
@@ -114,8 +128,8 @@ public class PaymentActivity extends AppCompatActivity {
 
                         }
                         if (control) {
-                            Toast.makeText(this, "İşlem Başarılı", Toast.LENGTH_SHORT).show();
-                            completeOrder();
+                            getUserName();
+
                         } else {
                             Toast.makeText(this, "İşlem Başarısız", Toast.LENGTH_SHORT).show();
                         }
@@ -135,13 +149,13 @@ public class PaymentActivity extends AppCompatActivity {
         }
 
     }
-    private void completeOrder(){
+    private void completeOrder(String username){
 
         String saveCurrentTime,saveCurrentDate;
-
         Calendar calForDate = Calendar.getInstance();
 
-        SimpleDateFormat currentDate = new SimpleDateFormat("dd, MM ,yyyy");
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd.MM.yyyy");
         saveCurrentDate = currentDate.format(calForDate.getTime());
 
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
@@ -149,19 +163,18 @@ public class PaymentActivity extends AppCompatActivity {
         final HashMap<String , Object > cartMap = new HashMap<>();
         cartMap.put("Date", saveCurrentDate);
         cartMap.put("Time", saveCurrentTime);
-        cartMap.put("Total_Price" , total.getText());
+        cartMap.put("Total_Price", total.getText());
+        cartMap.put("UserName",username);
         firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
                 .collection("MyOrders").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
-                        Toast.makeText(PaymentActivity.this, "Sipariş Tamamlandı ", Toast.LENGTH_SHORT).show();
                         if (task.isSuccessful()) {
                             DocumentReference documentReference = task.getResult();
                             if (documentReference != null) {
                                 String addedDocumentId = documentReference.getId();
-                                Toast.makeText(PaymentActivity.this, "Sipariş Tamamlandı. Belge ID: " + addedDocumentId, Toast.LENGTH_SHORT).show();
                                 AddCartsOrder(addedDocumentId);
-                                finish();
+                                //finish();
                             }
                         }
 
@@ -170,6 +183,42 @@ public class PaymentActivity extends AppCompatActivity {
                 });
 
 
+
+    }
+    private void deleteCart() {
+        firestore.collection("CurrentUser")
+                .document(auth.getCurrentUser().getUid())
+                .collection("AddToCart")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            // Koleksiyon içindeki tüm belgeleri al
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                // Her belgeyi sil
+                                firestore.collection("CurrentUser")
+                                        .document(auth.getCurrentUser().getUid())
+                                        .collection("AddToCart")
+                                        .document(document.getId())
+                                        .delete()
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                }
+                                            }
+                                        });
+                            }
+                        }
+                    }
+                });
+        goHome();
+    }
+    private void goHome(){
+        Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent( this, Home.class);
+        startActivity(intent);
     }
     private boolean isLoopExecuted = false;
     private void AddCartsOrder(String id){
@@ -194,7 +243,7 @@ public class PaymentActivity extends AppCompatActivity {
 
                                     mycartmodel[0] = pmycartmodel;
                                     WriteCartsPayment(id, mycartmodel[0]);
-                                    finish();
+                                    //finish();
                                 }
 
                                 isLoopExecuted = true;
@@ -211,7 +260,7 @@ public class PaymentActivity extends AppCompatActivity {
         final HashMap<String , Object > cartMap = new HashMap<>();
         cartMap.put("img_url" , carts.getImg_url());
         cartMap.put("productName", carts.getProductName());
-        cartMap.put("productPrice ", carts.getProductPrice());
+        cartMap.put("productPrice", carts.getProductPrice());
         cartMap.put("totalQuantity", carts.getTotalQuantity());
         cartMap.put("totalPrice", carts.getTotalPrice());
         firestore.collection("CurrentUser")
@@ -222,19 +271,37 @@ public class PaymentActivity extends AppCompatActivity {
                 .add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
-                        Toast.makeText(PaymentActivity.this, "Sipariş Tamamlandı ", Toast.LENGTH_SHORT).show();
                         if (task.isSuccessful()) {
                             DocumentReference documentReference = task.getResult();
                             if (documentReference != null) {
                                 String addedDocumentId = documentReference.getId();
-                                Toast.makeText(PaymentActivity.this, "Sipariş Tamamlandı. Belge ID: " + addedDocumentId, Toast.LENGTH_SHORT).show();
                                 AddCartsOrder(addedDocumentId);
-                                finish();
+                               // finish();
                             }
                         }
 
 
                     }
                 });
+        deleteCart();
+    }
+
+    public void getUserName(){
+
+        firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
+                .collection("UsersInformation").get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            getusername = (String)document.getString("username");
+                            completeOrder(getusername);
+                        }
+                    }
+                });
+
+
+    }
+    public void yazdir(String a){
+        Toast.makeText(this, a, Toast.LENGTH_SHORT).show();
     }
 }

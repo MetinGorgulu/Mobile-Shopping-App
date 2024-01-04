@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@color/otherblue"
+    android:background="#d4d4d4"
     android:padding="8dp"
     tools:ignore="MissingConstraints">
 
@@ -27,6 +27,7 @@
                 android:layout_height="20dp"
                 android:layout_weight="1"
                 android:gravity="top"
+                android:textStyle="bold"
                 android:text="Sakarya"
                 android:textColor="@color/black" />
 
@@ -45,6 +46,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:text="Phone Number : "/>
             <TextView
                 android:id="@+id/added_address_phone"
@@ -61,6 +64,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:text="Adress : "/>
         <TextView
             android:id="@+id/added_address_address"
@@ -71,5 +76,11 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    <Button
+        android:id="@+id/address_delete"
+        android:layout_width="21dp"
+        android:layout_height="23dp"
+        android:background="@drawable/ic_baseline_delete_24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </LinearLayout>

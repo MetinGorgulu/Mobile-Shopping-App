@@ -51,7 +51,6 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
         recyclerView = findViewById(R.id.address_rec);
         paymentButton = findViewById(R.id.payment_button);
         addAddress = findViewById(R.id.add_address_button);
-        Object obj = getIntent().getSerializableExtra("item");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         addressModelList = new ArrayList<>();
@@ -82,9 +81,7 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
                     Toast.makeText(AddressActivity.this, "Kayıtlı Address Yok", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    long amount = (long) obj;
                     Intent intent = new Intent(AddressActivity.this, PaymentActivity.class);
-                    intent.putExtra("totalAmount", amount);
                     intent.putExtra("addressName" ,mAddress);
                     startActivity(intent);
                 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -18,8 +19,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class Register extends AppCompatActivity {
@@ -92,6 +95,17 @@ public class Register extends AppCompatActivity {
 
                                                 }
                                             });
+                                    Map<String, Object> data = new HashMap<>();
+                                    data.put("Role", "Customer"); // Eklenecek alan ve değeri
+                                    firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid()).set(data, SetOptions.merge())
+                                            .addOnSuccessListener(aVoid -> {
+                                                // Başarılı bir şekilde güncelleme veya ekleme yapıldığında yapılacak işlemler
+                                                Log.d("Firestore", "Belge başarıyla güncellendi veya eklendi.");
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                // Hata durumu
+                                                Log.w("Firestore", "Belge güncellenirken veya eklenirken hata oluştu.", e);
+                                            });
                                     startActivity(new Intent(Register.this, MainActivity.class));
                                 }
                                 else
@@ -102,10 +116,6 @@ public class Register extends AppCompatActivity {
                         });
 
 
-    }
-
-    public void go_seller_register(View view){
-        startActivity(new Intent(Register.this,Regiser_seller.class));
     }
 
     public void login(View view){

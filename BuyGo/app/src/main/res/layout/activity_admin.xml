@@ -10,33 +10,70 @@
 
   <LinearLayout
       android:layout_width="match_parent"
-      android:id="@+id/line22"
+      android:id="@+id/admin_product_linear"
       android:gravity="center"
       android:layout_height="wrap_content">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/my_products"
-    android:textSize="32sp"
-    android:textStyle="bold"
-    android:textColor="@color/black"
-    android:gravity="center"
-    android:id="@+id/textt"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_products"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="center"
 
-    />
+        />
   </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:id="@+id/admin_cart_rec"
-        android:layout_marginTop="40dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent=".9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line22"
-        tools:listitem="@layout/activity_products"
-        />
+  <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="550dp"
+      android:layout_marginTop="10dp"
+      app:layout_constraintWidth_percent=".95"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/admin_product_linear"
+      >
+  <androidx.recyclerview.widget.RecyclerView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/admin_products"
+      android:layout_marginTop="40dp"
+      app:layout_constraintWidth_percent=".9"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/admin_product_linear"
+      tools:listitem="@layout/activity_products"
+      />
+  </LinearLayout>
+
+  <Button
+      android:id="@+id/admin_add_new_item"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="20dp"
+      android:backgroundTint="#009900"
+      android:drawableLeft="@drawable/add_icon"
+      android:padding="10dp"
+      android:onClick="go_add_item"
+      android:text="@string/add_item"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintBottom_toTopOf="@id/admin_navigation"
+      app:layout_constraintWidth_percent="0.6" />
+
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+      android:id="@+id/admin_navigation"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom"
+      android:defaultFocusHighlightEnabled="false"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:menu="@menu/admin_menu"/>
 
 
 

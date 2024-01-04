@@ -15,6 +15,10 @@
     <string name="store_name">Store Name</string>
     <string name="are_y_seller">Are You Seller?</string>
     <string name="click_here">Click Here</string>
+    <string name="orders">All Orders</string>
+    <string name="update">Update Item</string>
+    <string name="add_item">Add Item</string>
+    <string name="delete">Delete Item</string>
     <string name="Current_Date">Current Date</string>
     <string name="Current_Time">Current Time</string>
     <string name="Product_Name">Product Name</string>

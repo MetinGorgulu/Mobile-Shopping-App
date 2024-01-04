@@ -33,7 +33,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.checkerframework.checker.i18n.qual.LocalizableKeyBottom;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,7 +119,6 @@ public class CartActivity extends AppCompatActivity {
             }
             else {
                 Intent intent = new Intent(CartActivity.this, AddressActivity.class);
-                intent.putExtra("item",genelToplam);
                 startActivity(intent);
             }
 

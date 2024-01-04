@@ -40,7 +40,7 @@ public class DetailedActivity extends AppCompatActivity {
     //All Products
     AllProductsModel allProductsModel = null;
     FirebaseAuth auth;
-    private FirebaseFirestore firestore;
+    FirebaseFirestore firestore;
 
     int totalQuantity=1;
     int totalPrice = 0;
@@ -123,7 +123,8 @@ public class DetailedActivity extends AppCompatActivity {
         });
 
     }
-    String productKey ;
+    String productKey;
+    String productPrice;
 
     private void favorite() {
         if(auth.getCurrentUser()!=null){
@@ -138,7 +139,12 @@ public class DetailedActivity extends AppCompatActivity {
                         if (deney(productsName,compareName)) {
 
                             productKey = document.getId();
-                            controlFavorite();
+                            Double number = document.getDouble("price");
+                            int num = Double.valueOf(number).intValue();;
+
+                            productPrice  =String.valueOf(num);
+
+                            controlFavorite(productKey, productPrice);
                             break;
                         }
                     }
@@ -154,7 +160,7 @@ public class DetailedActivity extends AppCompatActivity {
         }
 
     }
-    private void controlFavorite(){
+    private void controlFavorite(String prodKey,String prodPrice){
 
 
         firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
@@ -166,7 +172,7 @@ public class DetailedActivity extends AppCompatActivity {
                             String favoriteProductsKey = (String) document.getString("productKey");
                             String compareKey = productKey;
 
-                            if (controlFavorite(favoriteProductsKey,compareKey)) {
+                            if (contFavorite(favoriteProductsKey,compareKey)) {
                                 ada=true;
                                 Toast.makeText(this, "Ürün Zaten Favorilerde", Toast.LENGTH_SHORT).show();
                                 break;
@@ -174,7 +180,7 @@ public class DetailedActivity extends AppCompatActivity {
 
                         }
                         if (!ada){
-                            addToFavorites();
+                            addToFavorites(prodKey,prodPrice);
                         }
                     } else {
                         Toast.makeText(getApplicationContext(), "Belge okuma hatası: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -182,7 +188,7 @@ public class DetailedActivity extends AppCompatActivity {
                     }
                 });
     }
-    private boolean controlFavorite(String a, String b){
+    private boolean contFavorite(String a, String b){
 
 
         if (a.equals(b)) {
@@ -202,9 +208,10 @@ public class DetailedActivity extends AppCompatActivity {
             return false;
         }
     }
-    private void addToFavorites (){
+    private void addToFavorites (String key,String price){
         final HashMap<String , Object > cartMap = new HashMap<>();
-        cartMap.put("productKey", productKey);
+        cartMap.put("productKey", key);
+        cartMap.put("productPrice",price);
 
         firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
                 .collection("Favorites").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
@@ -261,7 +268,7 @@ public class DetailedActivity extends AppCompatActivity {
                             String cartProductsName = (String) document.getString("productName");
                             String comparename = ProductName;
 
-                            if (controlFavorite(cartProductsName,comparename)) {
+                            if (contFavorite(cartProductsName,comparename)) {
                                 ada=true;
                                 Toast.makeText(this, "Ürün Zaten Sepete Eklendi", Toast.LENGTH_SHORT).show();
                                 break;

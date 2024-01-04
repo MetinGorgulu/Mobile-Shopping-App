@@ -13,6 +13,10 @@
     <string name="card_number">Kart Numarası</string>
     <string name="seller_panel">Satıcı Paneli</string>
     <string name="store_name">Mağaza Adı</string>
+    <string name="update">Ürün güncelle</string>
+    <string name="add_item">Ürün ekle</string>
+    <string name="delete">Ürünü sil</string>
+    <string name="orders">Tüm Siparişler</string>
     <string name="are_y_seller">Satıcı Mısınız?</string>
     <string name="click_here">Buraya Tıklayın</string>
     <string name="Current_Date">Eklenme Tarihi</string>

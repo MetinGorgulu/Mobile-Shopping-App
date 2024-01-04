@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.buygo.R;
-import com.example.buygo.models.MyCartModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,25 +19,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class Profile extends AppCompatActivity {
+public class admin_profile extends AppCompatActivity {
 
     TextView userName, userMail;
     FirebaseFirestore firestore;
     FirebaseAuth auth;
-    TextView logOut;
 
-    BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_admin_profile);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        userName = findViewById(R.id.profile_username);
-        userMail = findViewById(R.id.profile_usermail);
-        logOut = findViewById(R.id.log_out);
+        userName = findViewById(R.id.admin_username);
+        userMail = findViewById(R.id.admin_mail);
 
         firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
                 .collection("UsersInformation")
@@ -54,61 +50,41 @@ public class Profile extends AppCompatActivity {
                         }
                     }
                 });
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                FirebaseAuth.getInstance().signOut();
-                finishAffinity();
-                Intent intent = new Intent(Profile.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-
-            }
-        });
 
 
-
-
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView2);
-        bottomNavigationView.setSelectedItemId(R.id.menu_user);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.admin_profile_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.admin_profile);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()){
 
-                case R.id.menu_home:
-                    startActivity(new Intent(getApplicationContext(), Home.class));
+                case R.id.admin_home:
+                    startActivity(new Intent(getApplicationContext(), Admin.class));
                     finish();
                     return true;
-                case R.id.menu_chart:
-                    startActivity(new Intent(getApplicationContext(),CartActivity.class));
-                    finish();
-                    return true;
-                case R.id.menu_user:
+                case R.id.admin_profile:
                     return true;
             }
 
 
             return false;
         });
-
     }
 
-    public void go_settings(View view){
-        startActivity(new Intent(Profile.this,Settings.class));
+    public void admin_go_settings(View view){
+        startActivity(new Intent(admin_profile.this,Settings.class));
     }
 
-    public void go_orders(View view){
-        startActivity(new Intent(Profile.this, Orders.class));
-
+    public void admin_go_orders(View view){
+        startActivity(new Intent(admin_profile.this,admin_orders.class));
     }
-
-    public void go_favorites(View view){
-        startActivity(new Intent(Profile.this,Favorites.class));
-
+    public void admin_log_out(View view){
+        FirebaseAuth.getInstance().signOut();
+        finishAffinity();
+        Intent intent = new Intent(admin_profile.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
-
 
 }

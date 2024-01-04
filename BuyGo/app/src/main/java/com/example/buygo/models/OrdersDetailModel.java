@@ -1,30 +1,24 @@
 package com.example.buygo.models;
 
-public class MyCartModel {
+import java.util.List;
+
+public class OrdersDetailModel {
+
+
     String productName;
-    String productPrice;
     String totalQuantity;
     String img_url;
+    String productPrice;
     int totalPrice;
-
-    public MyCartModel() {
+    public OrdersDetailModel() {
     }
 
-
-    public MyCartModel(String productName, String productPrice, String totalQuantity, String img_url, int totalPrice) {
+    public OrdersDetailModel(String productName, String totalQuantity, String img_url, String productPrice, int totalPrice) {
         this.productName = productName;
-        this.productPrice = productPrice;
         this.totalQuantity = totalQuantity;
         this.img_url = img_url;
+        this.productPrice = productPrice;
         this.totalPrice = totalPrice;
-    }
-
-    public String getImg_url() {
-        return img_url;
-    }
-
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
     }
 
     public String getProductName() {
@@ -35,20 +29,20 @@ public class MyCartModel {
         this.productName = productName;
     }
 
-    public String getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(String productPrice) {
-        this.productPrice = productPrice;
-    }
-
     public String getTotalQuantity() {
         return totalQuantity;
     }
 
     public void setTotalQuantity(String totalQuantity) {
         this.totalQuantity = totalQuantity;
+    }
+
+    public String getImg_url() {
+        return img_url;
+    }
+
+    public void setImg_url(String img_url) {
+        this.img_url = img_url;
     }
 
     public int getTotalPrice() {

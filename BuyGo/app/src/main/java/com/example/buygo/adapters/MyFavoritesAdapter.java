@@ -138,7 +138,7 @@ public class MyFavoritesAdapter extends RecyclerView.Adapter<MyFavoritesAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView newImg;
         TextView newName, newPrice;
-        Button btnFavorite;
+        TextView btnFavorite;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             newImg= itemView.findViewById(R.id.favorites_img);

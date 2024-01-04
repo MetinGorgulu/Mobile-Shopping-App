@@ -12,8 +12,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/orders_table"
         android:padding="7dp"
+        android:id="@+id/admin_orders_table"
         android:orientation="vertical"
         android:onClick="go_orders_details"
         >
@@ -38,13 +38,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Current Date"
-                android:id="@+id/orders_current_date"
+                android:id="@+id/admin_orders_date"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 />
 
         </LinearLayout>
+
+
 
 
         <LinearLayout
@@ -66,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:id="@+id/orders_current_time"
+                android:id="@+id/admin_orders_time"
                 android:textColor="@color/black"
                 android:text="Current Time"
                 android:textSize="16sp"
@@ -75,7 +77,33 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/username"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="User Name"
+                android:id="@+id/admin_orders_username"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,7 +121,7 @@
                 />
 
             <TextView
-                android:id="@+id/orders_total_price"
+                android:id="@+id/admin_orders_totalprice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

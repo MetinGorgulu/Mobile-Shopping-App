@@ -131,7 +131,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name, price, totalQuantity, totalPrice;
         ImageView image;
-        Button delete_button;
+        TextView delete_button;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
