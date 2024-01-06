@@ -15,5 +15,5 @@
  Password: **123456**
  
  ### Müşteri Giriş Bilgileri
- E-mail: **admin@gmail.com**
+ E-mail: **metin@gmail.com**
  Password: **123456**
